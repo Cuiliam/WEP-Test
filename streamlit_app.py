@@ -65,7 +65,7 @@ fig_scatter = px.scatter(
 )
 
 # Add quadrant lines
-fig_scatter.add_shape(type="line", x0=x_median, x1=x_median, y0=scatter_df["Urgency"].min()-2, y1=scatter_df["Urgency"].max()+2,
+fig_scatter.add_shape(type="line", x0=x_median, x1=x_median, y0=scatter_df["Urgency"].min()-2, y1=scatter_df["Urgency"].max()+1,
                       line=dict(color="White", dash="dash"))
 fig_scatter.add_shape(type="line", x0=scatter_df["Feasibility"].min()-6, x1=scatter_df["Feasibility"].max()+2, y0=y_median, y1=y_median,
                       line=dict(color="White", dash="dash"))
@@ -80,12 +80,13 @@ fig_scatter.add_annotation(x=x_median - 7, y=y_median - 4,
 fig_scatter.add_annotation(x=x_median + 7, y=y_median - 4,
                            text="Easy but Not Urgent<br>(High Feasibility, Low Urgency)", showarrow=False, bgcolor="salmon", font=dict(color="black"))
 
+st.subheader("Invasive Species Action Priority Matrix")
+
 # Update layout
 fig_scatter.update_traces(textposition='top center')
 fig_scatter.update_layout(
     xaxis_title="Feasibility (Landscaping + Partnerships - Private Property)",
-    yaxis_title="Urgency (Threat Level + Water Distribution)",
-    title="Invasive Species Action Priority Matrix"
+    yaxis_title="Urgency (Threat Level + Water Distribution)"
 )
 
 st.plotly_chart(fig_scatter)
